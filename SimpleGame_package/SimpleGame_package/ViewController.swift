@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     let baskinRobbinsButton = UIButton()
     let multipleButton = UIButton()
     let updownButton = UIButton()
+    let stopGameButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ViewController: UIViewController {
         baskinRobbinsButtonSetup()
         multipleButtonSetup()
         updownButtonSetup()
+        stopButtonSetup()
     }
     
     // MARK: - 컴포넌트 Setup
@@ -126,6 +128,29 @@ class ViewController: UIViewController {
         }
     }
     
+    func stopButtonSetup() {
+        // 스탑 게임 진입 버튼
+        stopGameButton.backgroundColor = btColor1
+        stopGameButton.setTitle("스탑 게임", for: .normal)
+        stopGameButton.setTitleColor(self.laColor1, for: .normal)
+        stopGameButton.layer.cornerRadius = 16
+        self.view.addSubview(stopGameButton)
+        
+        // 버튼이 눌렸을 때의 색상 변경
+        stopGameButton.addTarget(self, action: #selector(buttonHighlighted(_:)), for: [.touchDown, .touchDragEnter])
+        stopGameButton.addTarget(self, action: #selector(buttonNormal(_:)), for: [.touchUpInside, .touchDragExit, .touchCancel])
+        
+        // Button Action
+        stopGameButton.addTarget(self, action: #selector(gotoStopVC), for: .touchUpInside)
+        
+        stopGameButton.snp.makeConstraints {
+            $0.centerX.equalTo(titleRactangle.snp.centerX)
+            $0.top.equalTo(updownButton.snp.bottom).offset(25)
+            $0.width.equalTo(170)
+            $0.height.equalTo(50)
+        }
+    }
+    
     @objc func buttonHighlighted(_ sender: UIButton) {
         sender.backgroundColor = btColor1.withAlphaComponent(0.7) // 버튼이 눌렸을 때의 색상
     }
@@ -150,6 +175,12 @@ class ViewController: UIViewController {
         print("업다운 게임 버튼이 눌림!!")
         let updownVC = UpDownViewController()
         self.navigationController?.pushViewController(updownVC, animated: true)
+    }
+    
+    @objc func gotoStopVC() {
+        print("스탑 게임 버튼이 눌림!!")
+        let stopVC = StopViewController()
+        self.navigationController?.pushViewController(stopVC, animated: true)
     }
 }
 

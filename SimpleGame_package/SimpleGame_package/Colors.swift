@@ -137,3 +137,18 @@ extension UpDownViewController {
         return UIColor(hex: "#EDE4B8")
     }
 }
+
+extension StopViewController {
+    var bgColor: UIColor{
+        return UIColor(hex: "#D5B7EA")
+    }
+    var laColor: UIColor{
+        return UIColor(hex: "#AF72D4")
+    }
+    var stopColor: UIColor{
+        return UIColor(hex: "#F00C0C")
+    }
+    var textColor: UIColor{
+        return UIColor(hex: "#296BCE")
+    }
+}
